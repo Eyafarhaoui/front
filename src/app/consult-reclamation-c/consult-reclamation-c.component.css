@@ -1,0 +1,65 @@
+/* Profil du client : aligner le nom et l'icône Gmail sur la même ligne */
+.owner-profile {
+    display: flex;
+    align-items: center; /* Alignement vertical */
+    justify-content: space-between; /* Espacement entre le nom et l'icône */
+    margin-bottom: 10px; /* Espace entre cette ligne et les autres éléments */
+}
+
+/* Style du nom du client */
+.owner-profile h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #003366;
+    margin: 0; /* Supprimer la marge par défaut */
+}
+
+/* Bouton email : placer l'icône Gmail à droite */
+.email-button {
+    background-color: #003366;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 50%; /* Forme circulaire pour l'icône */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; /* Taille fixe du bouton pour l'icône */
+    height: 30px;
+}
+
+.email-button:hover {
+    background-color: #FFD700;
+}
+
+/* Icône Gmail : ajuster la taille de l'icône */
+.email-icon {
+    width: 20px;
+    height: 20px; /* Taille de l'icône */
+}
+
+/* Les autres éléments (Réclamation) s'affichent sous forme de bloc */
+.response-card p {
+    color: #555555;
+    margin: 10px 0; /* Ajoute de l'espace entre chaque ligne */
+}
+
+/* Pour les cards contenant la réclamation */
+.response-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.success-message {
+    color: green;
+    font-size: 16px;
+    margin-top: 10px;
+    background-color: #eaf5e4;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  

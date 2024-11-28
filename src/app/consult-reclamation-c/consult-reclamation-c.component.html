@@ -1,0 +1,25 @@
+<main>
+  <div *ngFor="let reclamation of reclamations; let i = index" class="response-card">
+    <div class="owner-profile">
+      <h3><strong>Nom du client :</strong> {{ reclamation.nomClient }}</h3>
+    </div>
+
+    <p><strong>Réclamation :</strong> {{ reclamation.contenuReclamation }}</p>
+
+    <button class="reply-button" (click)="toggleReplyInput(i)">
+      Répondre à cette réclamation
+    </button>
+
+    <div *ngIf="showReplyInput[i]" class="reply-input">
+      <textarea [(ngModel)]="replyContents[i]" rows="3" placeholder="Saisissez votre réponse ici..."></textarea>
+      <button class="send-button" (click)="sendReply(i, replyContents[i])" [disabled]="!replyContents[i]">
+        Envoyer
+      </button>
+    </div>
+
+    <!-- Affichage du message de succès spécifique pour cette réclamation -->
+    <div *ngIf="successMessages[i]" class="success-message">
+      {{ successMessages[i] }}
+    </div>
+  </div>
+</main>
