@@ -19,23 +19,24 @@
             </ul>
         </nav>
     </header>
-    
+
 
     <form (ngSubmit)="onSubmit()">
-        <div class="container">
-            <div class="form-container">
-                <h2>Comment nous pouvons vous aider ?</h2>
-            </div>
-            <div>
-                <label for="annonce">Réclamation</label>
-                <textarea id="annonce" [(ngModel)]="rec.contenu" name="description" required></textarea>
-            </div>
-            <div *ngIf="warningMessage" class="warning-message">{{ warningMessage }}</div>
-            <button type="submit">Réclamer</button>
-        </div>
-    </form>
+      <div class="container">
+          <div class="form-container">
+              <h2>Comment nous pouvons vous aider ?</h2>
+          </div>
+          <div>
+              <label for="reclamation">Réclamation</label>
+              <textarea id="reclamation" [(ngModel)]="rec.contenu" name="contenu" required></textarea>
+          </div>
+          <div *ngIf="warningMessage" class="warning-message">{{ warningMessage }}</div>
+          <button type="submit">Réclamer</button>
+      </div>
+  </form>
+
     <p>{{ message }}</p>
-    
+
 
 <footer>
     <div class="container">

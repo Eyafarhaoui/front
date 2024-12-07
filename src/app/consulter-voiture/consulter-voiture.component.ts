@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Voiture } from '../models/Voiture';
 import { VoitureService } from '../services/VoitureService';
+import { AvisService } from '../services/AvisService';
+
 
 @Component({
   selector: 'app-consulter-voiture',
@@ -12,9 +14,13 @@ export class ConsulterVoitureComponent implements OnInit {
   voiture?: Voiture; // Define a variable to hold the car details
   message: string = '';
   voitureImageUrl: string | undefined; 
-
+  avisProprietaire: any[] = []; // Pour stocker les avis récupérés
+  afficherAvis: boolean = false; // Indique si les avis doivent être affichés
+  avisList: any[] = []; // Liste pour stocker les avis
+  avisModalVisibles: boolean = false;
   constructor(
     private route: ActivatedRoute,
+    private avisService: AvisService,
     private voitureService: VoitureService
   ) {}
 
@@ -38,6 +44,7 @@ export class ConsulterVoitureComponent implements OnInit {
       }
     });
   }
+  
   loadVoitureImage(id: number): void {
     this.voitureService.getImageVoitureById(id).subscribe({
       next: (blob) => {
@@ -52,6 +59,39 @@ export class ConsulterVoitureComponent implements OnInit {
       }
     });
   }
+  getAvisProprietaire() {
+    if (this.voiture && this.voiture.proprietaireId) {
+      this.avisService.getAvisByProprietaire(this.voiture.proprietaireId).subscribe({
+        next: (data) => {
+          this.avisList = data;
+          this.afficherAvis = true; // Affiche les avis dans l'interface utilisateur
+          console.log('Avis récupérés :', data);
+        },
+        error: (err) => {
+          console.error('Erreur lors de la récupération des avis', err);
+        }
+      });
+    } else {
+      console.error('Impossible de charger les avis : ID du propriétaire invalide');
+    }
+  }
+  
+
+getStarRating(note: number): any[] {
+  const stars = [];
+  for (let i = 1; i <= 5; i++) {
+    stars.push({ filled: i <= note });
+  }
+  return stars;
+}
+
+fermerAvis() {
+  this.afficherAvis = false;
+}
+closeAvisModals(): void {
+  console.log('Fermeture des avis');
+  this.afficherAvis = false;
 }
 
 
+}

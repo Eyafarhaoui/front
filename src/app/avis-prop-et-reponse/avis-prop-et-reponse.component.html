@@ -11,6 +11,8 @@
         </a>
       </li>
       <li>
+
+      <li>
         <a [routerLink]="['/liste-pub']" routerLinkActive="active">
           <i class="fas fa-tags"></i> Consulter les publications des clients
         </a>
@@ -43,42 +45,40 @@
     </ul>
   </nav>
 
-  <!-- Contenu principal -->
   <div class="dashboard-content">
     <header class="dashboard-header">
-      <h1 class="dashboard-title">Avis sur le propriétaire</h1>
+      <h1 class="dashboard-title">Les réponses sur vos avis</h1>
     </header>
-
-    <div class="avis-container">
-      <div *ngIf="avisList.length === 0">Aucun avis trouvé pour ce propriétaire.</div>
-
-      <div *ngFor="let avis of avisList" class="avis-card">
-        <p>
-          <img [src]="avis.imageClient" alt="Photo de {{ avis.nomClient }}" width="50" height="50" style="border-radius: 50%; margin-right: 10px;">
-          {{ avis.nomClient }}
-        </p>
-        <p><strong>Contenu :</strong> {{ avis.contenu }}</p>
+  <div *ngIf="avisList.length > 0; else noAvis">
+    <div *ngFor="let avis of avisList" class="avis-item">
+      <p><strong>Commentaire :</strong> {{ avis.contenu }}</p>
         <p><strong>Note :</strong>
-          <!-- Affichage des étoiles -->
-          <span *ngFor="let star of getStarRating(avis.note)" class="fa" [class.fa-star]="star.filled" [class.fa-star-o]="!star.filled"></span>
+          <ng-container *ngFor="let star of getStars(avis.note); let i = index">
+            <i class="fas" [ngClass]="{
+              'fa-star': star === 1,
+              'fa-star-half-alt': star === 0.5,
+              'fa-star-half': star === 0
+            }"></i>
+          </ng-container>
         </p>
-
-        <!-- Bouton "Répondre" -->
-        <button (click)="toggleCommentForm(avis)">Répondre</button>
-
-        <div *ngIf="avis.showCommentForm">
-          <textarea [(ngModel)]="avis.commentaire" placeholder="Votre commentaire..."></textarea>
-          <div *ngIf="warningMessage" class="warning-message">{{ warningMessage }}</div>
-          <button (click)="submitComment(avis)">Commenter</button>
-        </div>
-
-        <!-- Message de succès affiché après la publication -->
-        <div *ngIf="avis.successMessage" class="success-message">
-          {{ avis.successMessage }}
-        </div>
-      </div>
+        <button (click)="voirReponses(avis.contenu, 1)">Voir réponses</button>
     </div>
+  </div>
 
+  <ng-template #noAvis>
+    <p>Aucun avis disponible pour ce propriétaire.</p>
+  </ng-template>
+
+  <div class="modale"  *ngIf="selectedAvis">
+    <h3>Réponses pour l'avis :</h3><p>{{ selectedAvis }}</p>
+    <ul>
+      <li *ngFor="let reponse of selectedReponses">
+        <p>{{ reponse.commentaire }}</p>
+        <small>Client : {{ reponse.nom|| 'Nom inconnu' }}</small>
+      </li>
+    </ul>
+    <button (click)="fermerReponses()">Fermer</button>
 
   </div>
+  <div class="overlay" *ngIf="selectedAvis" (click)="fermerReponses()"></div>
 </div>

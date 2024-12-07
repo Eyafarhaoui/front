@@ -15,4 +15,9 @@ import { Observable } from 'rxjs';
     getAvisByClientId(clientId: number): Observable<any[]> {
         return this.http.get<any[]>(`${this.apiUrl}/avis-client/${clientId}`);
       }
+
+      gettProprietaireIdByContenu(contenu: string): Observable<number> {
+        console.log(`Appel à l'API avec le contenu: ${contenu}`);
+        return this.http.get<number>(`${this.apiUrl}/avis-client/proprietaire-id?contenu=${contenu}`);
+      }
   }

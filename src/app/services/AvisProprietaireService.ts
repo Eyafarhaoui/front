@@ -6,13 +6,20 @@ import { Observable } from 'rxjs';
   })
   export class AvisProprietaireService {
     private apiUrl = 'http://localhost:8081/api'; // URL de base de l'API
-  
+
     constructor(private http: HttpClient) {}
-  
+
     ajouterAvisProprietaire(avis: any): Observable<any> {
       return this.http.post(`${this.apiUrl}/avis-proprietaire`, avis);
     }
     getAvisByProprietaireId(proprietaireId: number): Observable<any[]> {
         return this.http.get<any[]>(`${this.apiUrl}/avis-proprietaire/${proprietaireId}`);
       }
+
+      getClientIdByContenu(contenu: string): Observable<number> {
+        console.log(`Appel à l'API avec le contenu: ${contenu}`);
+        return this.http.get<number>(`${this.apiUrl}/avis-proprietaire/client-id?contenu=${contenu}`);
+      }
+
+
   }

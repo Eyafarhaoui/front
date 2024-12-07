@@ -1,65 +1,143 @@
-/* Profil du client : aligner le nom et l'icône Gmail sur la même ligne */
-.owner-profile {
-    display: flex;
-    align-items: center; /* Alignement vertical */
-    justify-content: space-between; /* Espacement entre le nom et l'icône */
-    margin-bottom: 10px; /* Espace entre cette ligne et les autres éléments */
+/* Style général du container */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  padding: 20px;
 }
 
-/* Style du nom du client */
-.owner-profile h3 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #003366;
-    margin: 0; /* Supprimer la marge par défaut */
+/* Barre latérale (sidebar) */
+.sidebar {
+  width: 280px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #e9ecef;
+  padding: 20px 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Bouton email : placer l'icône Gmail à droite */
-.email-button {
-    background-color: #003366;
-    color: white;
-    padding: 0.5rem;
-    border-radius: 50%; /* Forme circulaire pour l'icône */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px; /* Taille fixe du bouton pour l'icône */
-    height: 30px;
+/* Liens de la sidebar */
+.sidebar a {
+  color: #495057;
+  text-decoration: none;
+  display: block;
+  padding: 12px 25px;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
 }
 
-.email-button:hover {
-    background-color: #FFD700;
+.sidebar a:hover, .sidebar a.active {
+  background-color: #e9ecef;
+  color: #007bff;
+  border-left-color: #007bff;
 }
 
-/* Icône Gmail : ajuster la taille de l'icône */
-.email-icon {
-    width: 20px;
-    height: 20px; /* Taille de l'icône */
+/* Contenu principal */
+.main-content {
+  flex-grow: 1;
+  padding: 30px;
+  background-color: #ffffff;
+  overflow-y: auto;
 }
 
-/* Les autres éléments (Réclamation) s'affichent sous forme de bloc */
-.response-card p {
-    color: #555555;
-    margin: 10px 0; /* Ajoute de l'espace entre chaque ligne */
+/* Titre du dashboard */
+.dashboard-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e9ecef;
 }
 
-/* Pour les cards contenant la réclamation */
+/* Style des cartes de réclamation (similaire à celle des propriétaires) */
 .response-card {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    width: 100%;
-    margin-bottom: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 5px solid #007bff; /* Couleur bleue pour identifier les réclamations */
 }
+
+.response-card h3 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+.response-card p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Bouton de réponse */
+.reply-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.reply-button:hover {
+  background-color: #0056b3;
+}
+
+/* Zone de texte pour répondre */
+.reply-input {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reply-input textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  resize: none;
+}
+
+/* Bouton d'envoi */
+.send-button {
+  align-self: flex-end;
+  background-color: #003366;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #FFD700;
+}
+
+/* Message de succès */
 .success-message {
-    color: green;
-    font-size: 16px;
-    margin-top: 10px;
-    background-color: #eaf5e4;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #d4edda;
+  border-left: 5px solid #0056b3;
+  color: #003366;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Message d'erreur */
+.error-message {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f8d7da;
+  border-left: 5px solid #dc3545;
+  color: #721c24;
+  border-radius: 5px;
+  font-size: 14px;
+}

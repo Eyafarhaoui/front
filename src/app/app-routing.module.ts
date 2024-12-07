@@ -23,7 +23,11 @@ import { DashbordAgentComponent } from './dashbord-agent/dashbord-agent.componen
 
 import { ConsultReclamationPComponent } from './consult-reclamation-p/consult-reclamation-p.component';
 import { ConsultReclamationCComponent } from './consult-reclamation-c/consult-reclamation-c.component';
+import { AvisPropEtReponseComponent } from './avis-prop-et-reponse/avis-prop-et-reponse.component';
+import { AvisClientEtReponseComponent } from './avis-client-et-reponse/avis-client-et-reponse.component';
+import { AdminComponent } from './admin/admin.component';
 
+import { LoginAgentComponent } from './login-agent/login-agent.component';
 const routes: Routes = [
   { path: 'publier-annonce', component: PublierAnnonceComponent },
   { path: 'offres', component: ConsulterOffresComponent },
@@ -43,11 +47,16 @@ const routes: Routes = [
   {path: 'avisP', component:AvisSurProprietaireComponent },
   {path: 'avisC', component:AvisSurClientComponent },
   {path: 'assistanceC', component:AssistanClientComponent },
-  {path: 'assistanceP', component:AssistanPropComponent },  
+  {path: 'assistanceP', component:AssistanPropComponent },
   {path: 'dashboardAgent', component: DashbordAgentComponent},
   {path: 'ConsulterRecP', component: ConsultReclamationPComponent},
 
   {path: 'ConsulterRecC', component: ConsultReclamationCComponent},
+  {path: 'AvisEtRepProp' , component: AvisPropEtReponseComponent},
+  {path: 'AvisEtRepClient' , component: AvisClientEtReponseComponent},
+  { path: 'admin', component: AdminComponent },
+  { path: 'loginA', component: LoginAgentComponent },
+
 
 
 

@@ -58,11 +58,7 @@
   margin-bottom: 20px;
 }
 
-.dashboard-title {
-  font-size: 28px;
-  font-weight: bold;
-  color: #34495e;
-}
+
 
 .avis-container {
   max-width: 800px;
@@ -163,10 +159,12 @@ textarea {
 }
 
 @media (max-width: 480px) {
+  
   .dashboard-title {
-    font-size: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #34495e;
   }
-
   .avis-container {
     padding: 15px;
   }

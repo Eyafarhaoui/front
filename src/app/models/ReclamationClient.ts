@@ -1,5 +1,6 @@
 export class ReclamationClient {
-    idRec?: number; 
+    idRec?: number;
     idClient!: number;
-    contenu!: string; 
+    contenu!: string;
 }
+

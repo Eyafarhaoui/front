@@ -16,27 +16,27 @@ export class AssistanPropComponent {
 
   constructor(private recService: ReclamationService, private router: Router) {} // Inject Router
 
-  
+
 
   onSubmit(): void {
       if (!this.rec.contenu || this.rec.contenu.trim() === '') {
           this.warningMessage = 'Veuillez saisir une réclamation avant de publier.';
           return;
       }
-  
-      this.warningMessage = ''; 
+
+      this.warningMessage = '';
       const userId = localStorage.getItem('userId');
       if (!userId) {
           this.message = "Utilisateur non connecté.";
           return;
       }
-  
-      this.rec.idProp = Number(userId); 
-      console.log('ID du prop:', this.rec.idProp ); 
+
+      this.rec.id_proprietaire = Number(userId);
+      console.log('ID du prop:', this.rec.id_proprietaire );
       console.log('Données de la réclamation de prop avant envoi:', this.rec);
       this.recService.createReclamationProp(this.rec).subscribe({
           next: (response) => {
-              console.log('Réponse de l\'API:', response); 
+              console.log('Réponse de l\'API:', response);
               this.message = 'Publication effectuée avec succès !';
               alert(this.message);
               this.router.navigate(['/dashboardProp']);

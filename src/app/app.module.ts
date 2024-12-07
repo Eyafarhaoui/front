@@ -29,6 +29,10 @@ import { AssistanPropComponent } from './assistan-prop/assistan-prop.component';
 import { DashbordAgentComponent } from './dashbord-agent/dashbord-agent.component';
 import { ConsultReclamationCComponent } from './consult-reclamation-c/consult-reclamation-c.component';
 import { ConsultReclamationPComponent } from './consult-reclamation-p/consult-reclamation-p.component';
+import { AvisPropEtReponseComponent } from './avis-prop-et-reponse/avis-prop-et-reponse.component';
+import { AvisClientEtReponseComponent } from './avis-client-et-reponse/avis-client-et-reponse.component';
+import { LoginAgentComponent } from './login-agent/login-agent.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 
@@ -58,6 +62,10 @@ import { ConsultReclamationPComponent } from './consult-reclamation-p/consult-re
     DashbordAgentComponent,
     ConsultReclamationCComponent,
     ConsultReclamationPComponent,
+    AvisPropEtReponseComponent,
+    AvisClientEtReponseComponent,
+    LoginAgentComponent,
+    AdminComponent,
    
    
  

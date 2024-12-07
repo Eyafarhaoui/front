@@ -296,3 +296,23 @@
   text-align: center;
   font-style: italic;
 }
+.avis-container {
+  max-height: 300px; /* Limite la hauteur de la liste */
+  overflow-y: auto; /* Active le défilement vertical */
+  border: 1px solid #ddd; /* Ajoute une bordure pour mieux délimiter */
+  padding: 10px; /* Ajoute un espacement interne */
+  background-color: #f9f9f9; /* Fond léger pour le contraste */
+  border-radius: 8px; /* Coins arrondis */
+}
+
+/* Style de la barre de défilement (facultatif, améliore l'apparence) */
+.avis-container::-webkit-scrollbar {
+  width: 8px;
+}
+.avis-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+.avis-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}

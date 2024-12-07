@@ -21,13 +21,18 @@
         </a>
       </li>
       <li>
+        <a [routerLink]="['/AvisEtRepProp']" routerLinkActive="active">
+          <i class="fas fa-comment-dots"></i> Consulter les réponses à mes avis
+        </a>
+      </li>
+      <li>
         <a [routerLink]="['/avisP']" routerLinkActive="active">
-          <i class="fas fa-calendar-alt"></i> Consulter les avis faite sur moi
+          <i class="fas fa-comments"></i> Consulter les avis faite sur moi
         </a>
       </li>
       <li>
         <a [routerLink]="['/assistanceP']" routerLinkActive="active">
-          <i class="fas fa-calendar-alt"></i> Service d'assistance
+          <i class="fas fa-life-ring"></i> Service d'assistance
         </a>
       </li>
       <li>
@@ -58,7 +63,7 @@
           [height]="400">
         </google-chart>
       </div>
-    
+
       <!-- Paiements -->
       <div class="info-card">
         <h2><i class="fas fa-pie-chart"></i> Paiements</h2>
@@ -71,7 +76,7 @@
         </google-chart>
       </div>
     </div>
-    
-    
+
+
   </div>
 </div>

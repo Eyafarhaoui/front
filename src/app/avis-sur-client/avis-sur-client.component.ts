@@ -3,6 +3,8 @@ import { AvisService } from '../services/AvisService';
 import { AuthService } from '../services/auth.service';
 import { ReponsesSurAvisService } from '../services/ReponsesSurAvisService';
 import { ReponseSurAvisProp } from '../models/ReponseSurAvisProp';
+import {AvisClientService  } from '../services/AvisClientService';
+import { ReponseSurAvisClient } from '../models/ReponseSurAvisClient';
 
 @Component({
   selector: 'app-avis-sur-client',
@@ -18,6 +20,7 @@ export class AvisSurClientComponent implements OnInit {
 
   constructor(
     private avisService: AvisService,
+    private AvisClientService :AvisClientService ,
     private reponsesSurAvisService: ReponsesSurAvisService,
     private authService: AuthService
   ) {}
@@ -36,7 +39,7 @@ export class AvisSurClientComponent implements OnInit {
 
   loadAvis(): void {
     if (this.idClient) {
-      
+
       this.avisService.getAvisByClient(this.idClient).subscribe({
         next: (data) => {
           this.avisList = data;
@@ -75,42 +78,51 @@ export class AvisSurClientComponent implements OnInit {
   // Méthode pour afficher ou masquer la zone de commentaire
   toggleCommentForm(avis: any): void {
     avis.showCommentForm = !avis.showCommentForm;
-    
+
   }
 
   submitComment(avis: any): void {
     if (!avis.commentaire || avis.commentaire.trim() === '') {
-      this.warningMessage = 'Veuillez saisir un commentaire avant de publier.';
-      return;
+        this.warningMessage = 'Veuillez saisir un commentaire avant de publier.';
+        return;
     }
-  
+
     this.warningMessage = '';
     const userId = localStorage.getItem('userId');
     if (!userId) {
-      this.message = "Utilisateur non connecté.";
-      return;
+        this.message = "Utilisateur non connecté.";
+        return;
     }
-  
+
     const newReponse = new ReponseSurAvisProp();
-    newReponse.client = { id: Number(userId) }; // Affecter l'objet client
-    newReponse.commentaire = avis.commentaire;
-    newReponse.DATE_COMMENTAIRE = new Date(); // Date actuelle pour le commentaire
-  
+newReponse.client = { id: Number(userId) }; // Affecter l'objet client avec son ID
+newReponse.commentaire = avis.commentaire; // Contenu du commentaire
+//newReponse.avis_id = avis.id;              // ID de l'avis associé
+newReponse.contenuAvis = avis.contenu;     // Contenu de l'avis
+ console.log('on passe a ID du propriétaire récupéré :');
+this.AvisClientService.gettProprietaireIdByContenu(avis.contenu).subscribe({
+  next: (proprietaireId) => {
+    console.log('ID du propriétaire récupéré :', proprietaireId);
+    //newReponse.proprietaire.id = proprietaireId; // On assigne l'id du propriétaire une fois qu'on a la réponse
+    newReponse.proprietaire = { id:proprietaireId };
     console.log('Données du commentaire avant envoi:', newReponse);
-  
+
     this.reponsesSurAvisService.submitComment(newReponse).subscribe({
-      next: (response) => {
-        console.log('Réponse de l\'API:', response);
-        this.message = ''; // Réinitialiser le message d'erreur
-        avis.successMessage = 'Votre commentaire a bien été publié !';
-        avis.showCommentForm = false; // Fermer la zone de texte après soumission
-      },
-      error: (err) => {
-        console.error('Erreur lors de la publication:', err);
-        this.message = 'Une erreur est survenue lors de la publication.';
-      }
+        next: (response) => {
+            console.log('Réponse de l\'API:', response);
+            this.message = ''; // Réinitialiser le message d'erreur
+            avis.successMessage = 'Votre commentaire a bien été publié !';
+            avis.showCommentForm = false; // Fermer la zone de texte après soumission
+        },
+        error: (err) => {
+            console.error('Erreur lors de la publication:', err);
+            this.message = 'Une erreur est survenue lors de la publication.';
+        }
     });
+  },
+  error: (err) => {
+    console.error('Erreur lors de la récupération de l\'id du propriétaire:', err);
+    this.message = 'Une erreur est survenue lors de la récupération des informations du propriétaire.';
   }
-  
-  
-}
+});
+  }}

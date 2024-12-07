@@ -1,5 +1,5 @@
 export class ReclamationProp {
-    idRec?: number; 
-    idProp!: number;
-    contenu!: string; 
+    idRec?: number;
+    id_proprietaire!: number;
+    contenu!: string;
 }

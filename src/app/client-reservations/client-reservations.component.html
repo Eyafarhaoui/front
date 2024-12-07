@@ -89,18 +89,33 @@
   </div>
   
   <div *ngIf="avisModalVisibles" class="modal">
-    <h3>Avis pour le Propriétaire</h3>
-    <ul *ngIf="selectedProprietaireId !== null && avisProprietaires[selectedProprietaireId]?.length; else noAvis">
-      <li *ngFor="let avis of avisProprietaires[selectedProprietaireId || 0]">
-        <p>Note : {{avis.note }}/5</p>
-        <p>{{ avis.contenu }}</p>
-      </li>
-    </ul>
-    <ng-template #noAvis>
-      <p>Aucun avis pour ce propriétaire.</p>
-    </ng-template>
-    <button (click)="closeAvisModals()">Fermer</button>
-  </div>
+    <div class="modal-content">
+        <h3>Les Avis des Propriétaires</h3>
+
+        <div class="avis-container">
+            <ul *ngIf="selectedProprietaireId !== null && avisProprietaires[selectedProprietaireId] && avisProprietaires[selectedProprietaireId].length > 0; else noAvis">
+                <li *ngFor="let avis of avisProprietaires[selectedProprietaireId]" class="avis-card">
+                    <div class="proprietaire-info">
+                        <p><strong>{{ avis.nomProprietaire }}</strong></p>
+                    </div>
+
+                    <div class="avis-details">
+                        <div class="avis-rating">
+                            <span *ngFor="let star of [].constructor(avis.note); let i = index" class="star">&#9733;</span>
+                            <span *ngFor="let star of [].constructor(5 - avis.note); let i = index" class="empty-star">&#9734;</span>
+                        </div>
+                        <p>{{ avis.contenu }}</p>
+                    </div>
+                </li>
+            </ul>
+            <ng-template #noAvis>
+                <p>Aucun avis pour ce propriétaire.</p>
+            </ng-template>
+        </div>
+        <button (click)="closeAvisModals()">Fermer</button>
+    </div>
+</div>
+
   <!-- Message d'erreur -->
   </main>
   

@@ -82,33 +82,35 @@
         </div>
         <div *ngIf="avisModalVisibles" class="modal">
             <div class="modal-content">
-              <h3>Les Avis des Clients</h3>
-          
-              <ul *ngIf="selectedClientId !== null && avisClients[selectedClientId] && avisClients[selectedClientId].length > 0; else noAvis">
-                <li *ngFor="let avis of avisClients[selectedClientId]" class="avis-card">
-                  <div class="client-info">
-                   
-                    <p><strong>{{ avis.nomClient }}</strong></p>
-                  </div>
-          
-                  <div class="avis-details">
-                    <div class="avis-rating">
-                      <span *ngFor="let star of [].constructor(avis.note); let i = index" class="star">&#9733;</span>
-                      <span *ngFor="let star of [].constructor(5 - avis.note); let i = index" class="star empty">&#9733;</span>
-                      <span class="rating-text">{{ avis.note }}/5</span>
-                    </div>
-                    <p><strong>Contenu :</strong> {{ avis.contenu }}</p>
-                  </div>
-                </li>
-              </ul>
-          
-              <ng-template #noAvis>
-                <p>Aucun avis pour ce client.</p>
-              </ng-template>
-          
-              <button (click)="closeAvisModals()" class="close-button">Fermer</button>
+                <h3>Les Avis des Clients</h3>
+        
+                <div class="avis-container">
+                    <ul *ngIf="selectedClientId !== null && avisClients[selectedClientId] && avisClients[selectedClientId].length > 0; else noAvis">
+                        <li *ngFor="let avis of avisClients[selectedClientId]" class="avis-card">
+                            <div class="client-info">
+                                <p><strong>{{ avis.nomClient }}</strong></p>
+                            </div>
+        
+                            <div class="avis-details">
+                                <div class="avis-rating">
+                                    <span *ngFor="let star of [].constructor(avis.note); let i = index" class="star">&#9733;</span>
+                                    <span *ngFor="let star of [].constructor(5 - avis.note); let i = index" class="star empty">&#9733;</span>
+                                    <span class="rating-text">{{ avis.note }}/5</span>
+                                </div>
+                                <p><strong>Contenu :</strong> {{ avis.contenu }}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+        
+                <ng-template #noAvis>
+                    <p>Aucun avis pour ce client.</p>
+                </ng-template>
+        
+                <button (click)="closeAvisModals()" class="close-button">Fermer</button>
             </div>
-          </div>
+        </div>
+        
           
           
         

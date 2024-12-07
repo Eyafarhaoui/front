@@ -102,7 +102,26 @@ nav {
     margin-bottom: 2rem;
     text-align: center;
 }
-
+.avis-container {
+    max-height: 300px; /* Limite la hauteur de la liste */
+    overflow-y: auto; /* Active le défilement vertical */
+    border: 1px solid #ddd; /* Ajoute une bordure pour mieux délimiter */
+    padding: 10px; /* Ajoute un espacement interne */
+    background-color: #f9f9f9; /* Fond léger pour le contraste */
+    border-radius: 8px; /* Coins arrondis */
+  }
+  
+  /* Style de la barre de défilement (facultatif, améliore l'apparence) */
+  .avis-container::-webkit-scrollbar {
+    width: 8px;
+  }
+  .avis-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  .avis-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
 .car-features i {
     font-size: 1.5rem;
     color: #003366;
@@ -187,3 +206,30 @@ footer {
     box-sizing: border-box;
 }
 
+.avis-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .star {
+    color: #FFD700;
+    font-size: 1.2rem;
+  }
+  
+  .empty-star {
+    color: #CCCCCC;
+    font-size: 1.2rem;
+  }
+  button {
+    background-color: #FFD700;
+    color: var(--primary-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #e6c200;
+  }

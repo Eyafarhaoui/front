@@ -15,14 +15,15 @@ export class ReclamationService {
     constructor(private http: HttpClient) {}
 
     // Réclamations Client
+
     createReclamationClient(rec: ReclamationClient): Observable<ReclamationClient> {
-        return this.http.post<ReclamationClient>(`${this.apiUrl}/client`, rec);
+      return this.http.post<ReclamationClient>(`${this.apiUrl}/client`, rec);
     }
 
     getReclamationClients(): Observable<ReclamationClientDTO[]> {
         return this.http.get<ReclamationClientDTO[]>(`${this.apiUrl}/client`);
     }
-    
+
 
     getReclamationClientById(id: number): Observable<ReclamationClient> {
         return this.http.get<ReclamationClient>(`${this.apiUrl}/client/${id}`);
@@ -35,7 +36,7 @@ export class ReclamationService {
     getReclamationProps(): Observable<ReclamationPropDTO[]> {
         return this.http.get<ReclamationPropDTO[]>(`${this.apiUrl}/prop`);
     }
-    
+
 
     getReclamationPropById(id: number): Observable<ReclamationProp> {
         return this.http.get<ReclamationProp>(`${this.apiUrl}/prop/${id}`);
